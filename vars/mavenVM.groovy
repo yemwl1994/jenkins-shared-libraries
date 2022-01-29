@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                echo "Checkout SCM workspace: ${WORKSPACE}, jobUrl: ${JOB_URL}, buildNumber: ${$BUILD_NUMBER}"
+                echo "Checkout SCM workspace: ${WORKSPACE}, jobUrl: ${JOB_URL}, buildNumber: ${BUILD_NUMBER}"
             }
             
         }
