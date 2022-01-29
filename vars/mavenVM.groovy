@@ -8,7 +8,7 @@ def call(Map mavenMap) {
     ];
 
 pipeline {
-    agent null
+    agent any
 
     stages {
         stage('Checkout SCM') {
@@ -18,7 +18,7 @@ pipeline {
     }
 
     post {
-        
+
         failure {
             echo "Post Action Failure"
         }
