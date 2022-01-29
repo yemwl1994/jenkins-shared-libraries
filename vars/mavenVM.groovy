@@ -1,5 +1,5 @@
 def call(Map mavenMap) {
-    echo "Generic Pipeline called with params: ${javaVMMap}"
+    echo "Generic Pipeline called with params: ${mavenMap}"
     def JENKINS_NODE = 'JENKINC_SLAVE'
     static final String repoName = utils.determineBitBucketRepoName()
     echo "Bitbucket repo name: ${repoName}"
