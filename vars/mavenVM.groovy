@@ -4,7 +4,10 @@ def call(Map mavenMap) {
     static final String repoName = utils.determineBitBucketRepoName()
     echo "Bitbucket repo name: ${repoName}"
     Map bitBucketPost = [
-        'name': 'APPLICATION PIPELINE'
+        'name': 'APPLICATION PIPELINE',
+        'url': "${JOB_URL}${BUILD_NUMBER}",
+        'commitID': "",
+        'repoName': repoName
     ];
 
 pipeline {
@@ -14,6 +17,14 @@ pipeline {
         stage('Checkout SCM') {
             steps {
                 echo "Checkout SCM workspace: ${WORKSPACE}, jobUrl: ${JOB_URL}, buildNumber: ${BUILD_NUMBER}"
+                sh '''
+                    java -version
+                    javac -version
+                    which mvn
+                    mvn --version
+                    pwd
+                    ls -lrt
+                '''
             }
             
         }
