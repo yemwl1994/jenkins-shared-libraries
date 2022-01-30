@@ -20,7 +20,7 @@ pipeline {
                 echo "Checkout SCM workspace: ${WORKSPACE}, jobUrl: ${JOB_URL}, buildNumber: ${BUILD_NUMBER}"
                 script {
                     gitInfo = checkout scm
-                    echo gitInfo.GIT_COMMIT
+                    echo gitInfo.toString()
                     sh '''
                         java -version
                         javac -version
