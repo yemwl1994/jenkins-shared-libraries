@@ -1,5 +1,6 @@
 def call(Map mavenMap) {
     echo "Generic Pipeline called with params: ${mavenMap}"
+    def gitInfo
     def JENKINS_NODE = 'JENKINC_SLAVE'
     static final String repoName = utils.determineBitBucketRepoName()
     echo "Bitbucket repo name: ${repoName}"
@@ -17,14 +18,17 @@ pipeline {
         stage('Checkout SCM') {
             steps {
                 echo "Checkout SCM workspace: ${WORKSPACE}, jobUrl: ${JOB_URL}, buildNumber: ${BUILD_NUMBER}"
-                sh '''
-                    java -version
-                    javac -version
-                    which mvn
-                    mvn --version
-                    pwd
-                    ls -lrt
-                '''
+                script {
+                    gitInfo = checkout scm
+                    sh '''
+                        java -version
+                        javac -version
+                        which mvn
+                        mvn --version
+                        pwd
+                        ls -lrt
+                    '''
+                }
             }
             
         }
